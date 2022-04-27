@@ -6,48 +6,49 @@ class SigInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: warnaHitam1,
-        body: SafeArea(
-          child: ListView(
-            children: [
-              title(),
-              SizedBox(height: 70),
-              inputEmail(),
-              SizedBox(height: 20),
-              inputPass(),
-              SizedBox(height: 30),
-              btnSignIn(),
-              SizedBox(height: 270),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 91),
-                child: Row(
-                  children: [
-                    Text(
-                      'Don\'t have an account?',
+      backgroundColor: warnaHitam1,
+      body: SafeArea(
+        child: ListView(
+          children: [
+            title(),
+            SizedBox(height: 70),
+            inputEmail(),
+            SizedBox(height: 20),
+            inputPass(),
+            SizedBox(height: 30),
+            btnSignIn(context),
+            SizedBox(height: 270),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 91),
+              child: Row(
+                children: [
+                  Text(
+                    'Don\'t have an account?',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: abuText,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/sign-up');
+                    },
+                    child: Text(
+                      'Sign Up',
                       style: GoogleFonts.poppins(
                         fontSize: 12,
-                        color: abuText,
+                        fontWeight: medium,
+                        color: warnaUngu,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/sign-up');
-                      },
-                      child: Text(
-                        'Sign Up',
-                        style: GoogleFonts.poppins(
-                          fontSize: 12,
-                          fontWeight: medium,
-                          color: warnaUngu,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Widget title() {
@@ -187,26 +188,29 @@ class SigInPage extends StatelessWidget {
     );
   }
 
-  Widget btnSignIn() {
+  Widget btnSignIn(BuildContext context) {
     return Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 30),
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-              backgroundColor: warnaUngu,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              )),
-          child: Text(
-            'Sign In',
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              fontWeight: medium,
-              color: waranaPutih,
-            ),
+      height: 50,
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: TextButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/home');
+        },
+        style: TextButton.styleFrom(
+            backgroundColor: warnaUngu,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            )),
+        child: Text(
+          'Sign In',
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: medium,
+            color: waranaPutih,
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

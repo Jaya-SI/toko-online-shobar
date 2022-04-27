@@ -20,7 +20,7 @@ class SignUpPage extends StatelessWidget {
             SizedBox(height: 20),
             password(),
             SizedBox(height: 30),
-            btnSignUp(),
+            btnSignUp(context),
             SizedBox(height: 115),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 85),
@@ -286,12 +286,14 @@ class SignUpPage extends StatelessWidget {
     );
   }
 
-  Widget btnSignUp() {
+  Widget btnSignUp(BuildContext context) {
     return Container(
       height: 50,
       margin: EdgeInsets.symmetric(horizontal: 30),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/home');
+        },
         style: TextButton.styleFrom(
             backgroundColor: warnaUngu,
             shape: RoundedRectangleBorder(

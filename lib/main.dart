@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopbar/pages/home_page.dart';
+import 'package:shopbar/pages/home/main_page.dart';
 import 'package:shopbar/pages/splash_page.dart';
 import 'package:shopbar/signin-page.dart';
 import 'package:shopbar/signup-page.dart';
@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashPage(),
         '/sign-in': (context) => SigInPage(),
-        '/sign-up': (context) => SignUpPage()
+        '/sign-up': (context) => SignUpPage(),
+        '/home':(context) => MainPage(),
       },
     );
   }
