@@ -15,6 +15,40 @@ class SignUpPage extends StatelessWidget {
             name(),
             SizedBox(height: 20),
             username(),
+            SizedBox(height: 20),
+            email(),
+            SizedBox(height: 20),
+            password(),
+            SizedBox(height: 30),
+            btnSignUp(),
+            SizedBox(height: 115),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 85),
+              child: Row(
+                children: [
+                  Text(
+                    'Already have an account?',
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: abuText,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'Sign Up',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        fontWeight: medium,
+                        color: warnaUngu,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -145,6 +179,132 @@ class SignUpPage extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget email() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Email Address',
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: medium,
+              color: waranaPutih,
+            ),
+          ),
+          SizedBox(height: 12),
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: warnaHitam2,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/icon_email.png',
+                    width: 17,
+                  ),
+                  SizedBox(width: 17),
+                  Expanded(
+                    child: TextFormField(
+                      style: GoogleFonts.poppins(
+                        color: waranaPutih,
+                      ),
+                      decoration: InputDecoration.collapsed(
+                          hintText: 'Your Email Address',
+                          hintStyle: GoogleFonts.poppins(
+                            color: abuText,
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget password() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Password',
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: medium,
+              color: waranaPutih,
+            ),
+          ),
+          SizedBox(height: 12),
+          Container(
+            height: 50,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: warnaHitam2,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/icon_password.png',
+                    width: 16,
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: TextFormField(
+                      obscureText: true,
+                      style: GoogleFonts.poppins(
+                        color: waranaPutih,
+                      ),
+                      decoration: InputDecoration.collapsed(
+                          hintText: 'Your Password',
+                          hintStyle: GoogleFonts.poppins(
+                            color: abuText,
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget btnSignUp() {
+    return Container(
+      height: 50,
+      margin: EdgeInsets.symmetric(horizontal: 30),
+      child: TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(
+            backgroundColor: warnaUngu,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            )),
+        child: Text(
+          'Sign Up',
+          style: GoogleFonts.poppins(
+            fontSize: 16,
+            fontWeight: medium,
+            color: waranaPutih,
+          ),
+        ),
       ),
     );
   }
