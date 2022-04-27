@@ -11,6 +11,7 @@ Color warnaHitam4 = Color(0xff252836);
 Color waranaPutih = Color(0xffF1F0F2);
 Color warnaAbu = Color(0xff999999);
 Color abuText = Color(0xff504F5E);
+Color abuIcon = Color(0xff808191);
 
 FontWeight light = FontWeight.w300;
 FontWeight reguler = FontWeight.w400;
