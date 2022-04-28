@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/product_card.dart';
+import 'package:shopbar/widgets/product_tile.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -15,6 +16,8 @@ class HomePage extends StatelessWidget {
             categories(),
             popularTitle(),
             popularProducts(),
+            arivalTitle(),
+            newArrival(),
           ],
         ),
       ),
@@ -201,5 +204,33 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  Widget arivalTitle() {
+    return Container(
+      margin: EdgeInsets.only(top: 30, left: 30),
+      child: Text(
+        'New Arrivals',
+        style: GoogleFonts.poppins(
+          color: waranaPutih,
+          fontSize: 22,
+          fontWeight: semibold,
+        ),
+      ),
+    );
+  }
+
+  Widget newArrival() {
+    return Container(
+      margin: EdgeInsets.only(top: 14),
+      child: Column(
+        children: [
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+          ProductTile(),
+        ],
+      ),
+    );
   }
 }
