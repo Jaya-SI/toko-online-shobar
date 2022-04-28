@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopbar/theme.dart';
+import 'package:shopbar/widgets/product_card.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -12,6 +13,8 @@ class HomePage extends StatelessWidget {
           children: [
             header(),
             categories(),
+            popularTitle(),
+            popularProducts(),
           ],
         ),
       ),
@@ -169,5 +172,34 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget popularTitle() {
+    return Container(
+      margin: EdgeInsets.only(left: 30, top: 31),
+      child: Text(
+        'PopularProducts',
+        style: GoogleFonts.poppins(
+          color: waranaPutih,
+          fontSize: 22,
+          fontWeight: semibold,
+        ),
+      ),
+    );
+  }
+
+  Widget popularProducts() {
+    return Container(
+        margin: EdgeInsets.only(left: 30, top: 14),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              ProductCard(),
+              ProductCard(),
+              ProductCard(),
+            ],
+          ),
+        ));
   }
 }
