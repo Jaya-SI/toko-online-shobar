@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shopbar/pages/detail_chat_page.dart';
 import 'package:shopbar/pages/home/main_page.dart';
 import 'package:shopbar/pages/splash_page.dart';
-import 'package:shopbar/signin-page.dart';
-import 'package:shopbar/signup-page.dart';
+import 'package:shopbar/pages/signin-page.dart';
+import 'package:shopbar/pages/signup-page.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/sign-in': (context) => SigInPage(),
         '/sign-up': (context) => SignUpPage(),
         '/home':(context) => MainPage(),
+        '/detail-chat':(context) => DetailChatPage(),
       },
     );
   }
