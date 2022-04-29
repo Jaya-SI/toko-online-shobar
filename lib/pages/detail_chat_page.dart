@@ -7,7 +7,7 @@ class DetailChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     header() {
       return PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: Size.fromHeight(70),
         child: AppBar(
           leading: GestureDetector(
             onTap: () {
@@ -50,9 +50,47 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    chatInput() {
+      return Container(
+        margin: EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                height: 45,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: warnaHitam4,
+                ),
+                child: Center(
+                  child: TextFormField(
+                    style: GoogleFonts.poppins(
+                      color: waranaPutih,
+                    ),
+                    decoration: InputDecoration.collapsed(
+                        hintText: 'Typle Message...',
+                        hintStyle: GoogleFonts.poppins(
+                          color: abuText,
+                        )),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: 20),
+            Image.asset(
+              'assets/button_send.png',
+              width: 45,
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: warnaHitam2,
       appBar: header(),
+      bottomNavigationBar: chatInput(),
     );
   }
 }
