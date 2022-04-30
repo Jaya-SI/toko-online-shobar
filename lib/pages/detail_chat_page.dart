@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopbar/theme.dart';
+import 'package:shopbar/widgets/buble_chat.dart';
 
 class DetailChatPage extends StatelessWidget {
   @override
@@ -50,40 +51,119 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
-    chatInput() {
+    chatProduct() {
       return Container(
-        margin: EdgeInsets.all(20),
+        margin: EdgeInsets.only(bottom: 20),
+        padding: EdgeInsets.all(10),
+        height: 74,
+        width: 225,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: warnaHitam3,
+          border: Border.all(
+            color: warnaUngu,
+          ),
+        ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                'assets/image_sepatu.png',
+                width: 54,
+              ),
+            ),
+            SizedBox(width: 10),
             Expanded(
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                height: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: warnaHitam4,
-                ),
-                child: Center(
-                  child: TextFormField(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'COURT VISIO...COURT VISIO...',
                     style: GoogleFonts.poppins(
                       color: waranaPutih,
                     ),
-                    decoration: InputDecoration.collapsed(
-                        hintText: 'Typle Message...',
-                        hintStyle: GoogleFonts.poppins(
-                          color: abuText,
-                        )),
+                    overflow: TextOverflow.ellipsis,
                   ),
-                ),
+                  SizedBox(height: 2),
+                  Text(
+                    '\$57,15',
+                    style: GoogleFonts.poppins(
+                      color: warnaUngu,
+                      fontWeight: medium,
+                    ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(width: 20),
             Image.asset(
-              'assets/button_send.png',
-              width: 45,
+              'assets/icon_close.png',
+              width: 22,
             ),
           ],
         ),
+      );
+    }
+
+    chatInput() {
+      return Container(
+        margin: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            chatProduct(),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: warnaHitam4,
+                    ),
+                    child: Center(
+                      child: TextFormField(
+                        style: GoogleFonts.poppins(
+                          color: waranaPutih,
+                        ),
+                        decoration: InputDecoration.collapsed(
+                            hintText: 'Typle Message...',
+                            hintStyle: GoogleFonts.poppins(
+                              color: abuText,
+                            )),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 20),
+                Image.asset(
+                  'assets/button_send.png',
+                  width: 45,
+                ),
+              ],
+            ),
+          ],
+        ),
+      );
+    }
+
+    content() {
+      return ListView(
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        children: [
+          BubleChat(
+            pengirim: true,
+            text: 'Apakah barang ini tersedia ?',
+          ),
+          BubleChat(
+            pengirim: false,
+            text: 'Good night, This item is only available in size 42 and 43',
+          ),
+        ],
       );
     }
 
@@ -91,6 +171,7 @@ class DetailChatPage extends StatelessWidget {
       backgroundColor: warnaHitam2,
       appBar: header(),
       bottomNavigationBar: chatInput(),
+      body: content(),
     );
   }
 }
