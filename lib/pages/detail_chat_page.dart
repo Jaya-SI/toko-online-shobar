@@ -158,10 +158,12 @@ class DetailChatPage extends StatelessWidget {
           BubleChat(
             pengirim: true,
             text: 'Apakah barang ini tersedia ?',
+            adaProduk: true,
           ),
           BubleChat(
             pengirim: false,
             text: 'Good night, This item is only available in size 42 and 43',
+            adaProduk: false,
           ),
         ],
       );
