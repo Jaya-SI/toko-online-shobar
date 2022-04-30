@@ -13,6 +13,7 @@ Color warnaHitam6 = Color(0xff2B2844);
 Color waranaPutih = Color(0xffF1F0F2);
 Color warnaAbu = Color(0xff999999);
 Color abuText = Color(0xff504F5E);
+Color abuText2 = Color(0xff999999);
 Color abuIcon = Color(0xff808191);
 Color warnaTransaparan = Colors.transparent;
 

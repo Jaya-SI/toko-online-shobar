@@ -8,7 +8,7 @@ class DetailChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     header() {
       return PreferredSize(
-        preferredSize: Size.fromHeight(70),
+        preferredSize: Size.fromHeight(60),
         child: AppBar(
           leading: GestureDetector(
             onTap: () {
