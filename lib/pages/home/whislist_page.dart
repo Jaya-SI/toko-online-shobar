@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopbar/theme.dart';
+import 'package:shopbar/widgets/whislist_card.dart';
 
 class WhisList extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class WhisList extends StatelessWidget {
       );
     }
 
-    content() {
+    emptyWhislist() {
       return Expanded(
         child: Container(
           width: double.infinity,
@@ -77,9 +78,26 @@ class WhisList extends StatelessWidget {
       );
     }
 
+    content() {
+      return Expanded(
+        child: Container(
+          color: warnaHitam3,
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            children: [
+              WhislistCard(),
+              WhislistCard(),
+              WhislistCard(),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Column(
       children: [
         header(),
+        // emptyWhislist(),
         content(),
       ],
     );
