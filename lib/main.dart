@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopbar/pages/detail_chat_page.dart';
+import 'package:shopbar/pages/editProfile_page.dart';
 import 'package:shopbar/pages/home/main_page.dart';
 import 'package:shopbar/pages/splash_page.dart';
 import 'package:shopbar/pages/signin-page.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => SignUpPage(),
         '/home':(context) => MainPage(),
         '/detail-chat':(context) => DetailChatPage(),
+        '/edit-profile':(context) => EditProfile(),
       },
     );
   }
