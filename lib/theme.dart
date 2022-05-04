@@ -16,6 +16,7 @@ Color warnaAbu = Color(0xff999999);
 Color abuText = Color(0xff504F5E);
 Color abuText2 = Color(0xff999999);
 Color abuIcon = Color(0xff808191);
+Color backgroud1 = Color(0xffECEDEF);
 Color warnaTransaparan = Colors.transparent;
 
 FontWeight light = FontWeight.w300;
