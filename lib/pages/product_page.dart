@@ -15,6 +15,18 @@ class _ProductPageState extends State<ProductPage> {
     'assets/image_sepatu.png',
   ];
 
+  List familiarShoes = [
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+    'assets/image_sepatu.png',
+  ];
+
   int indexSaatini = 0;
 
   @override
@@ -27,6 +39,20 @@ class _ProductPageState extends State<ProductPage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: indexSaatini == index ? warnaUngu : Color(0xffC4C4C4),
+        ),
+      );
+    }
+
+    familiarShoesCard(String imageUrl) {
+      return Container(
+        width: 54,
+        height: 54,
+        margin: EdgeInsets.only(right: 16),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(imageUrl),
+          ),
+          borderRadius: BorderRadius.circular(6),
         ),
       );
     }
@@ -94,6 +120,8 @@ class _ProductPageState extends State<ProductPage> {
     }
 
     content() {
+      int index = -1;
+
       return Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 17),
@@ -189,6 +217,84 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     textAlign: TextAlign.justify,
                   ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Text(
+                      'Familiar Shoes',
+                      style: GoogleFonts.poppins(
+                        fontWeight: medium,
+                        color: waranaPutih,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: familiarShoes.map(
+                        (image) {
+                          index++;
+                          return Container(
+                              margin:
+                                  EdgeInsets.only(left: index == 0 ? 30 : 0),
+                              child: familiarShoesCard(image));
+                        },
+                      ).toList(),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(30),
+              width: double.infinity,
+              child: Row(
+                children: [
+                  Container(
+                    width: 54,
+                    height: 54,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                          'assets/button_chat.png',
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 16),
+                  Expanded(
+                    child: Container(
+                      height: 54,
+                      child: TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          backgroundColor: warnaUngu,
+                        ),
+                        child: Text(
+                          'Add To Cart',
+                          style: GoogleFonts.poppins(
+                            fontSize: 16,
+                            fontWeight: semibold,
+                            color: waranaPutih,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             )
