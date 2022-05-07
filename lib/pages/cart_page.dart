@@ -96,10 +96,83 @@ class CartPage extends StatelessWidget {
       );
     }
 
+    costumBottomNav() {
+      return Container(
+        height: 170,
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Subtotal',
+                    style: GoogleFonts.poppins(
+                      color: waranaPutih,
+                    ),
+                  ),
+                  Text(
+                    '\$287,96',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      fontWeight: semibold,
+                      color: warnaUngu,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Divider(
+              thickness: 1,
+              color: warnaHitam6,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              height: 50,
+              margin: EdgeInsets.symmetric(horizontal: 30),
+              child: TextButton(
+                style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    backgroundColor: warnaUngu,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    )),
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Continue to Checkout',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: semibold,
+                        color: waranaPutih,
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward,
+                      color: waranaPutih,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: warnaHitam3,
       appBar: header(),
       body: content(),
+      bottomNavigationBar: costumBottomNav(),
     );
   }
 }
