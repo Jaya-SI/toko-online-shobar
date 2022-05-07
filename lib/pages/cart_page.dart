@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopbar/theme.dart';
+import 'package:shopbar/widgets/cart_card.dart';
 
 class CartPage extends StatelessWidget {
   @override
@@ -86,10 +87,19 @@ class CartPage extends StatelessWidget {
       );
     }
 
+    content() {
+      return ListView(
+        padding: EdgeInsets.symmetric(horizontal: 30),
+        children: [
+          CartCard(),
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: warnaHitam3,
       appBar: header(),
-      body: emptyCart(),
+      body: content(),
     );
   }
 }
