@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopbar/pages/cart_page.dart';
+import 'package:shopbar/pages/checkout_page.dart';
 import 'package:shopbar/pages/detail_chat_page.dart';
 import 'package:shopbar/pages/editProfile_page.dart';
 import 'package:shopbar/pages/home/main_page.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/product': (context) => ProductPage(),
         '/detail-chat': (context) => DetailChatPage(),
         '/cart': (context) => CartPage(),
+        '/checkout': (context) => CheckoutPage(),
       },
     );
   }
