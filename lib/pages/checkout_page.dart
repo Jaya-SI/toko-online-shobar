@@ -278,7 +278,9 @@ class CheckoutPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/checkout-success');
+              },
               child: Text(
                 'Checkout Now',
                 style: GoogleFonts.poppins(
