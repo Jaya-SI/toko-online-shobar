@@ -142,6 +142,124 @@ class CheckoutPage extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(
+              top: 30,
+            ),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: warnaHitam4,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Payment Summary',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: medium,
+                    color: waranaPutih,
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Product Quantity',
+                      style: GoogleFonts.poppins(
+                        color: abuText2,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      '2 Items',
+                      style: GoogleFonts.poppins(
+                        color: waranaPutih,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Product Price',
+                      style: GoogleFonts.poppins(
+                        color: abuText2,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      '\$575.96',
+                      style: GoogleFonts.poppins(
+                        color: waranaPutih,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Shipping',
+                      style: GoogleFonts.poppins(
+                        color: abuText2,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      'Free',
+                      style: GoogleFonts.poppins(
+                        color: waranaPutih,
+                        fontWeight: medium,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Divider(
+                  thickness: 1,
+                  color: Color(0xff2E3141),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: GoogleFonts.poppins(
+                        fontWeight: semibold,
+                        color: warnaBiru,
+                      ),
+                    ),
+                    Text(
+                      '\$575.92',
+                      style: GoogleFonts.poppins(
+                        fontWeight: semibold,
+                        color: warnaBiru,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       );
     }
