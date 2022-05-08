@@ -39,19 +39,109 @@ class CheckoutPage extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 30),
-                child: Text(
-                  'List Item',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'List Item',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: medium,
+                        color: waranaPutih,
+                      ),
+                    ),
+                    CheckoutCard(),
+                    CheckoutCard(),
+                  ],
+                ),
+              )
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: warnaHitam4,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Address Details',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: medium,
                     color: waranaPutih,
                   ),
                 ),
-              ),
-              CheckoutCard(),
-              CheckoutCard(),
-            ],
-          )
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/icon_store_location.png',
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/icon_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icon_your_address.png',
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Store Location',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: light,
+                            color: abuText2,
+                          ),
+                        ),
+                        Text(
+                          'Adidas Core',
+                          style: GoogleFonts.poppins(
+                            fontWeight: medium,
+                            color: waranaPutih,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          'Your Address',
+                          style: GoogleFonts.poppins(
+                            fontSize: 12,
+                            fontWeight: light,
+                            color: abuText2,
+                          ),
+                        ),
+                        Text(
+                          'Marsemoon',
+                          style: GoogleFonts.poppins(
+                            fontWeight: medium,
+                            color: waranaPutih,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
         ],
       );
     }
