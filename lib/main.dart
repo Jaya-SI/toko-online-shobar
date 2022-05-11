@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shopbar/pages/cart_page.dart';
 import 'package:shopbar/pages/checkout_page.dart';
 import 'package:shopbar/pages/checkout_success_page.dart';
@@ -9,29 +10,37 @@ import 'package:shopbar/pages/product_page.dart';
 import 'package:shopbar/pages/splash_page.dart';
 import 'package:shopbar/pages/signin-page.dart';
 import 'package:shopbar/pages/signup-page.dart';
+import 'package:shopbar/providers/auth_provider.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => SplashPage(),
-        '/sign-in': (context) => SigInPage(),
-        '/sign-up': (context) => SignUpPage(),
-        '/home': (context) => MainPage(),
-        '/detail-chat': (context) => DetailChatPage(),
-        '/edit-profile': (context) => EditProfile(),
-        '/product': (context) => ProductPage(),
-        '/detail-chat': (context) => DetailChatPage(),
-        '/cart': (context) => CartPage(),
-        '/checkout': (context) => CheckoutPage(),
-        '/checkout-success':(context) => CheckoutSuccess(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => SplashPage(),
+          '/sign-in': (context) => SigInPage(),
+          '/sign-up': (context) => SignUpPage(),
+          '/home': (context) => MainPage(),
+          '/detail-chat': (context) => DetailChatPage(),
+          '/edit-profile': (context) => EditProfile(),
+          '/product': (context) => ProductPage(),
+          '/detail-chat': (context) => DetailChatPage(),
+          '/cart': (context) => CartPage(),
+          '/checkout': (context) => CheckoutPage(),
+          '/checkout-success': (context) => CheckoutSuccess(),
+        },
+      ),
     );
   }
 }

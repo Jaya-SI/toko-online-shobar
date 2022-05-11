@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget? body() {
+  Widget body() {
     switch (indexSaatIni) {
       case 0:
         return HomePage();
