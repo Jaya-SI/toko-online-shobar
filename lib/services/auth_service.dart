@@ -3,7 +3,7 @@ import 'package:shopbar/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  String baseUrl = 'https://shamo-backend.buildwithangga.id/api';
+  String baseUrl = 'http://192.168.8.102:8000/api';
 
   Future<UserModel> register({
     String name,
@@ -12,16 +12,13 @@ class AuthService {
     String password,
   }) async {
     var url = '$baseUrl/register';
-    var headers = {'Connect-Type': 'application/json'};
+    var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
       'name': name,
       'username': username,
       'email': email,
       'password': password,
     });
-
-    print(headers);
-    print(body);
 
     var response = await http.post(
       url,

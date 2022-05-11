@@ -3,18 +3,33 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/theme.dart';
+import 'package:shopbar/widgets/loading_button.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController nameController = TextEditingController(text: '');
+
   TextEditingController usernameController = TextEditingController(text: '');
+
   TextEditingController emailController = TextEditingController(text: '');
+
   TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
     handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+
       if (await authProvider.register(
         name: nameController.text,
         username: usernameController.text,
@@ -22,7 +37,21 @@ class SignUpPage extends StatelessWidget {
         password: passwordController.text,
       )) {
         Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: warnaMerah,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
       }
+
+      setState(() {
+        isLoading = false;
+      });
     }
 
     Widget title() {
@@ -260,7 +289,7 @@ class SignUpPage extends StatelessWidget {
       );
     }
 
-    Widget btnSignUp(BuildContext context) {
+    Widget btnSignUp() {
       return Container(
         height: 50,
         margin: EdgeInsets.symmetric(horizontal: 30),
@@ -298,7 +327,7 @@ class SignUpPage extends StatelessWidget {
             SizedBox(height: 20),
             password(),
             SizedBox(height: 30),
-            btnSignUp(context),
+            isLoading ? LoadingButton() : btnSignUp(),
             SizedBox(height: 115),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 85),
