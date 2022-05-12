@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/models/user_model.dart';
+import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/theme.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     header() {
       return AppBar(
         automaticallyImplyLeading: false,
@@ -29,7 +34,7 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hallo, Jaya',
+                        'Hallo, ${user.name}',
                         style: GoogleFonts.poppins(
                           fontSize: 24,
                           fontWeight: semibold,
@@ -37,7 +42,7 @@ class ProfilePage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '@jaya.saptr',
+                        '@${user.username}',
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           color: abuText,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/models/user_model.dart';
+import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/product_card.dart';
 import 'package:shopbar/widgets/product_tile.dart';
@@ -7,6 +10,52 @@ import 'package:shopbar/widgets/product_tile.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
+    Widget header() {
+      return Container(
+        margin: EdgeInsets.all(30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Hello, ${user.name}',
+                    style: GoogleFonts.poppins(
+                      fontSize: 24,
+                      fontWeight: semibold,
+                      color: waranaPutih,
+                    ),
+                  ),
+                  Text(
+                    '@${user.username}',
+                    style: GoogleFonts.poppins(
+                      fontSize: 16,
+                      color: abuText,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 54,
+              height: 54,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage('assets/image_profile.png'),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: warnaHitam1,
       body: SafeArea(
@@ -20,49 +69,6 @@ class HomePage extends StatelessWidget {
             newArrival(),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget header() {
-    return Container(
-      margin: EdgeInsets.all(30),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hello, Muhammad Jaya Saputra',
-                  style: GoogleFonts.poppins(
-                    fontSize: 24,
-                    fontWeight: semibold,
-                    color: waranaPutih,
-                  ),
-                ),
-                Text(
-                  '@jaya.saptr',
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                    color: abuText,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            width: 54,
-            height: 54,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage('assets/image_profile.png'),
-              ),
-            ),
-          )
-        ],
       ),
     );
   }

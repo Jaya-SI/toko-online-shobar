@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/models/user_model.dart';
+import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/theme.dart';
 
 class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
     header() {
       return AppBar(
         leading: IconButton(
@@ -54,9 +59,9 @@ class EditProfile extends StatelessWidget {
                 fontSize: 16,
               ),
               decoration: InputDecoration(
-                hintText: 'Masukkan Nama Anda',
+                hintText: '${user.name}',
                 hintStyle: GoogleFonts.poppins(
-                  color: abuText,
+                  color: waranaPutih,
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -77,7 +82,7 @@ class EditProfile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Name',
+              'Username',
               style: GoogleFonts.poppins(
                 fontSize: 13,
                 color: abuText2,
@@ -89,9 +94,9 @@ class EditProfile extends StatelessWidget {
                 fontSize: 16,
               ),
               decoration: InputDecoration(
-                hintText: 'Masukkan Nama Anda',
+                hintText: '${user.username}',
                 hintStyle: GoogleFonts.poppins(
-                  color: abuText,
+                  color: waranaPutih,
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -112,7 +117,7 @@ class EditProfile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Name',
+              'Email',
               style: GoogleFonts.poppins(
                 fontSize: 13,
                 color: abuText2,
@@ -124,9 +129,9 @@ class EditProfile extends StatelessWidget {
                 fontSize: 16,
               ),
               decoration: InputDecoration(
-                hintText: 'Masukkan Nama Anda',
+                hintText: '${user.email}',
                 hintStyle: GoogleFonts.poppins(
-                  color: abuText,
+                  color: waranaPutih,
                 ),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
