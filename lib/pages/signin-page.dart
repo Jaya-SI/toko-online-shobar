@@ -1,10 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/theme.dart';
+import 'package:shopbar/widgets/loading_button.dart';
 
-class SigInPage extends StatelessWidget {
+class SigInPage extends StatefulWidget {
+  @override
+  State<SigInPage> createState() => _SigInPageState();
+}
+
+class _SigInPageState extends State<SigInPage> {
+  TextEditingController emailController = TextEditingController(text: '');
+
+  TextEditingController passwordController = TextEditingController(text: '');
+
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignIn() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: warnaMerah,
+            content: Text(
+              'Gagal Login!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    Widget btnSignIn() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 30),
+        child: TextButton(
+          onPressed: handleSignIn,
+          style: TextButton.styleFrom(
+              backgroundColor: warnaUngu,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              )),
+          child: Text(
+            'Sign In',
+            style: GoogleFonts.poppins(
+              fontSize: 16,
+              fontWeight: medium,
+              color: waranaPutih,
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: warnaHitam1,
       body: SafeArea(
@@ -16,7 +83,7 @@ class SigInPage extends StatelessWidget {
             SizedBox(height: 20),
             inputPass(),
             SizedBox(height: 30),
-            btnSignIn(context),
+            isLoading ? LoadingButton() : btnSignIn(),
             SizedBox(height: 270),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 91),
@@ -115,6 +182,7 @@ class SigInPage extends StatelessWidget {
                     ),
                     Expanded(
                       child: TextFormField(
+                        controller: emailController,
                         style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: medium,
@@ -167,6 +235,7 @@ class SigInPage extends StatelessWidget {
                   SizedBox(width: 16),
                   Expanded(
                     child: TextFormField(
+                      controller: passwordController,
                       style: GoogleFonts.poppins(
                         color: waranaPutih,
                       ),
@@ -184,32 +253,6 @@ class SigInPage extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget btnSignIn(BuildContext context) {
-    return Container(
-      height: 50,
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 30),
-      child: TextButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/home');
-        },
-        style: TextButton.styleFrom(
-            backgroundColor: warnaUngu,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            )),
-        child: Text(
-          'Sign In',
-          style: GoogleFonts.poppins(
-            fontSize: 16,
-            fontWeight: medium,
-            color: waranaPutih,
-          ),
-        ),
       ),
     );
   }

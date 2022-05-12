@@ -345,7 +345,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      'Sign Up',
+                      'Sign In',
                       style: GoogleFonts.poppins(
                         fontSize: 12,
                         fontWeight: medium,
