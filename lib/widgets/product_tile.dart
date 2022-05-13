@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopbar/models/product_model.dart';
 import 'package:shopbar/theme.dart';
 
 class ProductTile extends StatelessWidget {
+  final ProductModel product;
+  ProductTile(this.product);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -15,8 +18,8 @@ class ProductTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                'assets/image_sepatu.png',
+              child: Image.network(
+                product.galleries[0].url,
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -28,7 +31,7 @@ class ProductTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Football',
+                    product.category.name,
                     style: GoogleFonts.poppins(
                       fontSize: 12,
                       color: abuText,
@@ -36,16 +39,17 @@ class ProductTile extends StatelessWidget {
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'Predator 20.3 Firm Ground',
+                    product.name,
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: semibold,
                       color: waranaPutih,
                     ),
+                    maxLines: 1,
                   ),
                   SizedBox(height: 6),
                   Text(
-                    '\$285,73',
+                    '\$${product.price}',
                     style: GoogleFonts.poppins(
                       fontWeight: medium,
                       color: warnaBiru,

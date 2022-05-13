@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopbar/models/product_model.dart';
 import 'package:shopbar/theme.dart';
 
 class ProductCard extends StatelessWidget {
+  final ProductModel product;
+  ProductCard(this.product);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,8 +24,8 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 30),
-            Image.asset(
-              'assets/image_sepatu.png',
+            Image.network(
+              product.galleries[0].url,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
@@ -33,7 +36,7 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hiking',
+                    product.category.name,
                     style: GoogleFonts.poppins(
                       fontSize: 12,
                       color: abuText,
@@ -41,17 +44,18 @@ class ProductCard extends StatelessWidget {
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'COURT VISION 2.0',
+                    product.name,
                     style: GoogleFonts.poppins(
                       color: warnaHitam5,
                       fontSize: 18,
                       fontWeight: semibold,
                     ),
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   SizedBox(height: 6),
                   Text(
-                    '\$58,67',
+                    '\$${product.price}',
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: medium,

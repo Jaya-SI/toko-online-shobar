@@ -3,7 +3,7 @@ import 'package:shopbar/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  String baseUrl = 'http://192.168.84.181:8000/api';
+  String baseUrl = 'http://192.168.8.102:8000/api';
 
   Future<UserModel> register({
     String name,

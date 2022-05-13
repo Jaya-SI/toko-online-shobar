@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shopbar/models/user_model.dart';
 import 'package:shopbar/providers/auth_provider.dart';
+import 'package:shopbar/providers/product_provider.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/product_card.dart';
 import 'package:shopbar/widgets/product_tile.dart';
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     Widget header() {
       return Container(
@@ -52,6 +54,32 @@ class HomePage extends StatelessWidget {
               ),
             )
           ],
+        ),
+      );
+    }
+
+    Widget popularProducts() {
+      return Container(
+          margin: EdgeInsets.only(left: 30, top: 14),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: productProvider.products
+                  .map((product) => ProductCard(product))
+                  .toList(),
+            ),
+          ));
+    }
+
+    Widget newArrival() {
+      return Container(
+        margin: EdgeInsets.only(top: 14),
+        child: Column(
+          children: productProvider.products
+              .map(
+                (product) => ProductTile(product),
+              )
+              .toList(),
         ),
       );
     }
@@ -197,21 +225,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget popularProducts() {
-    return Container(
-        margin: EdgeInsets.only(left: 30, top: 14),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              ProductCard(),
-              ProductCard(),
-              ProductCard(),
-            ],
-          ),
-        ));
-  }
-
   Widget arivalTitle() {
     return Container(
       margin: EdgeInsets.only(top: 30, left: 30),
@@ -222,20 +235,6 @@ class HomePage extends StatelessWidget {
           fontSize: 22,
           fontWeight: semibold,
         ),
-      ),
-    );
-  }
-
-  Widget newArrival() {
-    return Container(
-      margin: EdgeInsets.only(top: 14),
-      child: Column(
-        children: [
-          ProductTile(),
-          ProductTile(),
-          ProductTile(),
-          ProductTile(),
-        ],
       ),
     );
   }
