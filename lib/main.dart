@@ -11,6 +11,7 @@ import 'package:shopbar/pages/splash_page.dart';
 import 'package:shopbar/pages/signin-page.dart';
 import 'package:shopbar/pages/signup-page.dart';
 import 'package:shopbar/providers/auth_provider.dart';
+import 'package:shopbar/providers/product_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
         ),
       ],
       child: MaterialApp(

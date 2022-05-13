@@ -32,7 +32,7 @@ class ProductModel {
     tags = json['tags'];
     category = CategoryModel.fronJson(json['category']);
     galleries = json['galleries']
-        .map((gallery) => GalleryModel.fromJson(gallery))
+        .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
@@ -41,14 +41,14 @@ class ProductModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'name' : name,
-      'price':price,
+      'name': name,
+      'price': price,
       'description': description,
       'tags': tags,
-      'category' : category.toJson(),
-      'galleries' :galleries.map((gallery) => gallery.toJson()).toList(),
-      'createdAt':createdAt.toString(),
-      'updatedAt':updatedAt.toString(),
+      'category': category.toJson(),
+      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
+      'createdAt': createdAt.toString(),
+      'updatedAt': updatedAt.toString(),
     };
   }
 }
