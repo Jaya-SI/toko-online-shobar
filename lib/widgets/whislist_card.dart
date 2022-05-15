@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/models/product_model.dart';
+import 'package:shopbar/providers/whislist_provider.dart';
 import 'package:shopbar/theme.dart';
 
 class WhislistCard extends StatelessWidget {
+  final ProductModel product;
+
+  WhislistCard(this.product);
+
   @override
   Widget build(BuildContext context) {
+    WhislistProvider wishlistPorvider = Provider.of<WhislistProvider>(context);
+
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.only(top: 10, left: 12, bottom: 14, right: 20),
@@ -16,8 +25,8 @@ class WhislistCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              'assets/image_sepatu.png',
+            child: Image.network(
+              product.galleries[0].url,
               width: 60,
             ),
           ),
@@ -29,14 +38,14 @@ class WhislistCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Terrex Urban Low',
+                  product.name,
                   style: GoogleFonts.poppins(
                     fontWeight: semibold,
                     color: waranaPutih,
                   ),
                 ),
                 Text(
-                  '\$143,98',
+                  '\$${product.price}',
                   style: GoogleFonts.poppins(
                     color: warnaBiru,
                   ),
@@ -44,9 +53,14 @@ class WhislistCard extends StatelessWidget {
               ],
             ),
           ),
-          Image.asset(
-            'assets/button_whislist_blue.png',
-            width: 34,
+          GestureDetector(
+            onTap: () {
+              wishlistPorvider.setProduct(product);
+            },
+            child: Image.asset(
+              'assets/button_whislist_blue.png',
+              width: 34,
+            ),
           ),
         ],
       ),

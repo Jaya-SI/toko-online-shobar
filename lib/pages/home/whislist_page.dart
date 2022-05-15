@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/models/product_model.dart';
+import 'package:shopbar/providers/whislist_provider.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/whislist_card.dart';
 
 class WhisList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    WhislistProvider wishlistProvider = Provider.of<WhislistProvider>(context);
+
     header() {
       return AppBar(
         centerTitle: true,
@@ -84,11 +89,9 @@ class WhisList extends StatelessWidget {
           color: warnaHitam3,
           child: ListView(
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            children: [
-              WhislistCard(),
-              WhislistCard(),
-              WhislistCard(),
-            ],
+            children: wishlistProvider.wishlist
+                .map((product) => WhislistCard(product))
+                .toList(),
           ),
         ),
       );
@@ -98,7 +101,7 @@ class WhisList extends StatelessWidget {
       children: [
         header(),
         // emptyWhislist(),
-        content(),
+        wishlistProvider.wishlist.length == 0 ? emptyWhislist() : content(),
       ],
     );
   }

@@ -12,6 +12,7 @@ import 'package:shopbar/pages/signin-page.dart';
 import 'package:shopbar/pages/signup-page.dart';
 import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/providers/product_provider.dart';
+import 'package:shopbar/providers/whislist_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => WhislistProvider(),
         ),
       ],
       child: MaterialApp(
