@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopbar/models/cart_model.dart';
 import 'package:shopbar/theme.dart';
 
 class CheckoutCard extends StatelessWidget {
+  final CartModel cart;
+
+  CheckoutCard(this.cart);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,8 +25,8 @@ class CheckoutCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/image_sepatu.png',
+                image: NetworkImage(
+                  cart.product.galleries[0].url,
                 ),
               ),
             ),
@@ -34,7 +39,7 @@ class CheckoutCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sepatu Adidas Anjay',
+                  cart.product.name,
                   style: GoogleFonts.poppins(
                     fontWeight: semibold,
                     color: waranaPutih,
@@ -45,7 +50,7 @@ class CheckoutCard extends StatelessWidget {
                   height: 2,
                 ),
                 Text(
-                  '\$143,98',
+                  '\$${cart.product.price}',
                   style: GoogleFonts.poppins(
                     color: warnaBiru,
                   ),
@@ -57,7 +62,7 @@ class CheckoutCard extends StatelessWidget {
             width: 15,
           ),
           Text(
-            '2 Items',
+            '${cart.quantity} Items',
             style: GoogleFonts.poppins(
               color: warnaAbu,
             ),

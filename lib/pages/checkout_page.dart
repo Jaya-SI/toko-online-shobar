@@ -1,11 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/providers/auth_provider.dart';
+import 'package:shopbar/providers/cart_provider.dart';
+import 'package:shopbar/providers/transaction_provider.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/checkout_card.dart';
+import 'package:shopbar/widgets/loading_button.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
+  @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleCheckout() async {
+      setState(() {
+        isLoading = true;
+      });
+      if (await transactionProvider.checkout(
+        authProvider.user.token,
+        cartProvider.carts,
+        cartProvider.totalprice(),
+      )) {
+        cartProvider.cart = [];
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/checkout-success', (route) => false);
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     header() {
       return AppBar(
         backgroundColor: warnaHitam1,
@@ -50,8 +84,11 @@ class CheckoutPage extends StatelessWidget {
                         color: waranaPutih,
                       ),
                     ),
-                    CheckoutCard(),
-                    CheckoutCard(),
+                    Column(
+                      children: cartProvider.carts
+                          .map((cart) => CheckoutCard(cart))
+                          .toList(),
+                    )
                   ],
                 ),
               )
@@ -129,7 +166,7 @@ class CheckoutPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Marsemoon',
+                          'Banjarmasin',
                           style: GoogleFonts.poppins(
                             fontWeight: medium,
                             color: waranaPutih,
@@ -176,7 +213,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '2 Items',
+                      '${cartProvider.totalItems()} Items',
                       style: GoogleFonts.poppins(
                         color: waranaPutih,
                         fontWeight: medium,
@@ -198,7 +235,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$575.96',
+                      '\$${cartProvider.totalprice()}',
                       style: GoogleFonts.poppins(
                         color: waranaPutih,
                         fontWeight: medium,
@@ -249,7 +286,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$575.92',
+                      '\$${cartProvider.totalprice()}',
                       style: GoogleFonts.poppins(
                         fontWeight: semibold,
                         color: warnaBiru,
@@ -267,30 +304,31 @@ class CheckoutPage extends StatelessWidget {
             thickness: 1,
             color: Color(0xff2B2938),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 30),
-            width: double.infinity,
-            height: 50,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: warnaUngu,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/checkout-success');
-              },
-              child: Text(
-                'Checkout Now',
-                style: GoogleFonts.poppins(
-                  color: waranaPutih,
-                  fontSize: 16,
-                  fontWeight: semibold,
-                ),
-              ),
-            ),
-          )
+          isLoading
+              ? Container(
+                  margin: EdgeInsets.only(bottom: 30), child: LoadingButton())
+              : Container(
+                  margin: EdgeInsets.symmetric(vertical: 30),
+                  width: double.infinity,
+                  height: 50,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      backgroundColor: warnaUngu,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    onPressed: handleCheckout,
+                    child: Text(
+                      'Checkout Now',
+                      style: GoogleFonts.poppins(
+                        color: waranaPutih,
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
+                    ),
+                  ),
+                )
         ],
       );
     }
