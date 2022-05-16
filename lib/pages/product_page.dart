@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shopbar/models/product_model.dart';
+import 'package:shopbar/providers/cart_provider.dart';
 import 'package:shopbar/providers/whislist_provider.dart';
 import 'package:shopbar/theme.dart';
 
@@ -38,6 +39,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     WhislistProvider wishListProvider = Provider.of<WhislistProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     Future<void> showSuccessDialog() async {
       return showDialog(
         context: context,
@@ -100,7 +102,9 @@ class _ProductPageState extends State<ProductPage> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cart');
+                      },
                       child: Text(
                         'View My Cart',
                         style: GoogleFonts.poppins(
@@ -399,6 +403,7 @@ class _ProductPageState extends State<ProductPage> {
                       height: 54,
                       child: TextButton(
                         onPressed: () {
+                          cartProvider.addCart(widget.product);
                           showSuccessDialog();
                         },
                         style: TextButton.styleFrom(

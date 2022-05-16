@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:shopbar/providers/cart_provider.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/cart_card.dart';
 
 class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     header() {
       return AppBar(
         backgroundColor: warnaHitam1,
@@ -90,9 +94,11 @@ class CartPage extends StatelessWidget {
     content() {
       return ListView(
         padding: EdgeInsets.symmetric(horizontal: 30),
-        children: [
-          CartCard(),
-        ],
+        children: cartProvider.carts
+            .map(
+              (cart) => CartCard(cart),
+            )
+            .toList(),
       );
     }
 
@@ -113,7 +119,7 @@ class CartPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$287,96',
+                    '\$${cartProvider.totalprice()}',
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: semibold,
@@ -173,8 +179,9 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: warnaHitam3,
       appBar: header(),
-      body: content(),
-      bottomNavigationBar: costumBottomNav(),
+      body: cartProvider.carts.length == 0 ? emptyCart() : content(),
+      bottomNavigationBar:
+          cartProvider.carts.length == 0 ? SizedBox() : costumBottomNav(),
     );
   }
 }

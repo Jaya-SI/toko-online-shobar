@@ -11,6 +11,7 @@ import 'package:shopbar/pages/splash_page.dart';
 import 'package:shopbar/pages/signin-page.dart';
 import 'package:shopbar/pages/signup-page.dart';
 import 'package:shopbar/providers/auth_provider.dart';
+import 'package:shopbar/providers/cart_provider.dart';
 import 'package:shopbar/providers/product_provider.dart';
 import 'package:shopbar/providers/whislist_provider.dart';
 
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => WhislistProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
         ),
       ],
       child: MaterialApp(
