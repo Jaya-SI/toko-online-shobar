@@ -189,10 +189,11 @@ class _SigInPageState extends State<SigInPage> {
                           color: waranaPutih,
                         ),
                         decoration: InputDecoration.collapsed(
-                            hintText: 'Input Your Email Address',
-                            hintStyle: GoogleFonts.poppins(
-                              color: abuText,
-                            )),
+                          hintText: 'Input Your Email Address',
+                          hintStyle: GoogleFonts.poppins(
+                            color: abuText,
+                          ),
+                        ),
                       ),
                     )
                   ],
