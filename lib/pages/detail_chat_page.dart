@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shopbar/models/message_model.dart';
 import 'package:shopbar/models/product_model.dart';
 import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/services/message_service.dart';
@@ -194,21 +195,24 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        children: [
-          BubleChat(
-            pengirim: true,
-            text: 'Apakah barang ini tersedia ?',
-            adaProduk: true,
-          ),
-          BubleChat(
-            pengirim: false,
-            text: 'Good night, This item is only available in size 42 and 43',
-            adaProduk: false,
-          ),
-        ],
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream:
+              MessageService().getMessageByUserId(userId: authProvider.user.id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                children: snapshot.data.map((MessageModel message) => BubleChat(
+                  pengirim: message.isFromUser,
+                  text: message.message,
+                )).toList(),
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     return Scaffold(

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopbar/models/product_model.dart';
 import 'package:shopbar/theme.dart';
 
 class BubleChat extends StatelessWidget {
   final String text;
   final bool pengirim;
-  final bool adaProduk;
+  final ProductModel product;
 
-  BubleChat({this.pengirim = false, this.text = '', this.adaProduk = false});
+  BubleChat({
+    this.pengirim = false,
+    this.text = '',
+    this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +116,7 @@ class BubleChat extends StatelessWidget {
         crossAxisAlignment:
             pengirim ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          adaProduk ? productPreview() : SizedBox(),
+          product is UninitializedProductModel ? SizedBox() : productPreview(),
           Row(
             mainAxisAlignment:
                 pengirim ? MainAxisAlignment.end : MainAxisAlignment.start,
