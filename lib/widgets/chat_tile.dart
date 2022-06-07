@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopbar/models/message_model.dart';
 import 'package:shopbar/models/product_model.dart';
 import 'package:shopbar/pages/detail_chat_page.dart';
 import 'package:shopbar/theme.dart';
 
 class ChatTile extends StatelessWidget {
+  final MessageModel message;
+  ChatTile(this.message);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -43,7 +46,7 @@ class ChatTile extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Selamat datang di store shop saya...',
+                        message.message,
                         style: GoogleFonts.poppins(
                           color: warnaAbu,
                         ),

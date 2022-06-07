@@ -13,6 +13,7 @@ import 'package:shopbar/pages/signin-page.dart';
 import 'package:shopbar/pages/signup-page.dart';
 import 'package:shopbar/providers/auth_provider.dart';
 import 'package:shopbar/providers/cart_provider.dart';
+import 'package:shopbar/providers/page_provide.dart';
 import 'package:shopbar/providers/product_provider.dart';
 import 'package:shopbar/providers/transaction_provider.dart';
 import 'package:shopbar/providers/whislist_provider.dart';
@@ -45,6 +46,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => TransactionProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => PageProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

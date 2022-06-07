@@ -36,8 +36,8 @@ class BubleChat extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(
-                    'assets/image_sepatu.png',
+                  child: Image.network(
+                    product.galleries[0].url,
                     width: 70,
                   ),
                 ),
@@ -47,14 +47,14 @@ class BubleChat extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'COURT VISION2.0 SHOES',
+                        product.name,
                         style: GoogleFonts.poppins(
                           color: waranaPutih,
                         ),
                       ),
                       SizedBox(height: 4),
                       Text(
-                        '\$57,15',
+                        'RP ${product.price}',
                         style: GoogleFonts.poppins(
                           fontWeight: medium,
                           color: warnaUngu,

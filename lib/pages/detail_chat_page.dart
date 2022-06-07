@@ -202,10 +202,13 @@ class _DetailChatPageState extends State<DetailChatPage> {
             if (snapshot.hasData) {
               return ListView(
                 padding: EdgeInsets.symmetric(horizontal: 30),
-                children: snapshot.data.map((MessageModel message) => BubleChat(
-                  pengirim: message.isFromUser,
-                  text: message.message,
-                )).toList(),
+                children: snapshot.data
+                    .map((MessageModel message) => BubleChat(
+                          pengirim: message.isFromUser,
+                          text: message.message,
+                          product: message.product,
+                        ))
+                    .toList(),
               );
             } else {
               return Center(

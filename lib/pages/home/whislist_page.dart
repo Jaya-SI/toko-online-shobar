@@ -6,10 +6,13 @@ import 'package:shopbar/providers/whislist_provider.dart';
 import 'package:shopbar/theme.dart';
 import 'package:shopbar/widgets/whislist_card.dart';
 
+import '../../providers/page_provide.dart';
+
 class WhisList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WhislistProvider wishlistProvider = Provider.of<WhislistProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     header() {
       return AppBar(
@@ -66,7 +69,9 @@ class WhisList extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       )),
-                  onPressed: () {},
+                  onPressed: () {
+                    pageProvider.currentIndex == 0;
+                  },
                   child: Text(
                     'Explore Store',
                     style: GoogleFonts.poppins(
